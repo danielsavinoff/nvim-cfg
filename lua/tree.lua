@@ -47,3 +47,27 @@ vim.api.nvim_create_autocmd("FileType", {
 		end, { buffer = true, silent = true, noremap = true, desc = "Create file in previous window" })
 	end,
 })
+
+vim.pack.add({
+  { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+  { src = "https://github.com/prichrd/netrw.nvim" },
+}, { confirm = false, load = true })
+
+require("nvim-web-devicons").setup({})
+
+require("netrw").setup({
+  use_devicons = true,
+})
+
+-- Show icons on a startup.
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = vim.api.nvim_create_augroup("NetrwInitialIcons", { clear = true }),
+  callback = vim.schedule_wrap(function()
+    if vim.bo.filetype == "netrw" then
+      vim.api.nvim_exec_autocmds("OptionSet", {
+        group = "netrw",
+        pattern = "modified",
+      })
+    end
+  end),
+})

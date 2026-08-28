@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 
 require("options")
 require("colorscheme")
-require("netrw")
+require("tree")
 require("statusline")
 require("autocommands")
 require("diagnostics")
