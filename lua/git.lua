@@ -6,19 +6,20 @@ vim.opt.signcolumn = "yes"
 
 local gitsigns = require("gitsigns")
 
-local function format_blame(_, info)
+local function format_blame(name, info)
   local line = vim.api.nvim_win_get_cursor(0)[1] - 1
 
   if #vim.diagnostic.get(0, { lnum = line }) > 0 then
     return {}
   end
 
-  return {
-    {
-      "  " .. info.author .. " — " .. (info.summary or ""),
-      "GitSignsCurrentLineBlame",
-    },
-  }
+	local template = "  <author>, <author_time:%R> — <summary>"
+
+	local text = require("gitsigns.blame_formatter").expand_string(
+    template, name, info, { self_author_text = "You" }
+  )
+
+  return { { text, "GitSignsCurrentLineBlame" } }
 end
 
 gitsigns.setup({
