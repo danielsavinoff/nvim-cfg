@@ -11,7 +11,7 @@ vim.pack.add({
 
 -- Install missing parsers and wait until they are ready.
 require("nvim-treesitter")
-  .install({ "typescript", "tsx", "javascript" })
+  .install({ "typescript", "tsx", "javascript", "go", "gomod", "gowork", "gosum" })
   :wait(300000)
 
 -- Enable highlighting automatically.
@@ -22,6 +22,10 @@ vim.api.nvim_create_autocmd("FileType", {
     "typescriptreact",
     "javascript",
     "javascriptreact",
+    "go",
+    "gomod",
+    "gowork",
+    "gosum",
   },
   callback = function(event)
     vim.treesitter.start(event.buf)
