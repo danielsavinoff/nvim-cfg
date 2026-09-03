@@ -30,6 +30,7 @@ gitsigns.setup({
   },
   current_line_blame_formatter = format_blame,
   current_line_blame_formatter_nc = format_blame,
+  attach_to_untracked = true,
 })
 
 -- Recheck even when diagnostics change without cursor movement.
