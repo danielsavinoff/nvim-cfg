@@ -7,6 +7,7 @@ require("plugins/telescope")
 require("plugins/treesitter")
 require("plugins/nvim_treesitter_context")
 require("plugins/gitsigns")
+require("netrw_session")
 
 require("options")
 require("colorscheme")
