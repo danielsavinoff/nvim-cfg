@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/better_vim_logo.png" alt="BetterVim" width="500">
+</p>
+
 # BetterVim
 
 A Neovim config aimed at providing a better Neovim experience.
