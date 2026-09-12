@@ -139,8 +139,13 @@ function M.rex()
 end
 
 function M.restore(_, data)
+  local ok, decoded = pcall(vim.json.decode, data)
+  if not ok or type(decoded) ~= "table" then
+    return
+  end
+
   local tabs = vim.api.nvim_list_tabpages()
-  for _, state in ipairs(vim.json.decode(data).netrw or {}) do
+  for _, state in ipairs(decoded.netrw or {}) do
     local tab = tabs[state.tab]
     local win = tab and vim.api.nvim_tabpage_list_wins(tab)[state.window]
     if win then
@@ -171,6 +176,23 @@ function M.load_session()
   local data
   if vim.fn.filereadable(session_path .. ".json") == 1 then
     data = table.concat(vim.fn.readfile(session_path .. ".json"), "\n")
+  end
+
+  -- A partially entered command can be captured at the end of a session
+  -- file.  Drop that invalid footer before sourcing the session so Vim does
+  -- not interpret it as a malformed :vimgrep command.
+  local lines = vim.fn.readfile(session_path)
+  local repaired = {}
+  local truncated = false
+  for _, line in ipairs(lines) do
+    if line == "vim :" or line == ":" then
+      truncated = true
+      break
+    end
+    table.insert(repaired, line)
+  end
+  if truncated then
+    vim.fn.writefile(repaired, session_path)
   end
   vim.cmd.source(vim.fn.fnameescape(session_path))
   if data then
