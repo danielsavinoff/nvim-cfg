@@ -8,9 +8,21 @@
       "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "mason-lspconfig.nvim": {
+      "rev": "77e06f7d2fc127e6ef0a720b59acbc50757cff19",
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
+    },
+    "mason.nvim": {
+      "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
     "netrw.nvim": {
       "rev": "3f643df59951d9adc4cf348cefe435fcdb5a3671",
       "src": "https://github.com/prichrd/netrw.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
+      "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
       "rev": "8b98b4470eb326f1c7b50dae79f8c963568e5720",
